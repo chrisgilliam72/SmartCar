@@ -1,0 +1,127 @@
+﻿<Window x:Class="DesktopClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopClient" DataContext="{Binding RelativeSource={RelativeSource Self}}" Loaded="Window_Loaded" Closing="Window_Closing"
+        mc:Ignorable="d"
+        Title="Pi Car Client"  Width="500" Height="550" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                <Button Margin="5" Width="50" Height="50" Click="btnClick_CamLeft" >
+                    <StackPanel>
+                        <Image Source="Images\back48.png"/>
+                    </StackPanel>
+                </Button>
+                <Button  Margin="5"  Width="50" Height="50" Click="Btn_ClickCamRight" >
+                    <StackPanel>
+                        <Image Source="Images\forward.png"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="5" Width="50" Height="50" Click="btnClick_CamUp" >
+                    <StackPanel>
+                        <Image Source="Images\up.png"/>
+                    </StackPanel>
+                </Button>
+                <Button  Margin="5"  Width="50" Height="50" Click="Btn_ClickCamDown" >
+                    <StackPanel>
+                        <Image Source="Images\down.png"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label Margin="10" VerticalAlignment="Center">Car Status:</Label>
+                <Ellipse Height="20" Width="20" Fill="{Binding PingColor}">
+                </Ellipse>
+            </StackPanel>
+        </StackPanel>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"   BorderBrush="Black" BorderThickness="1">
+            <Image  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="CamImage"/>
+        </Border>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="5" Text="Distance:" VerticalAlignment="Center"/>
+                <TextBox Margin="5"   Text="{Binding Distance }" Width="100" Height="25"/>
+                <Button Margin="5" Width="50" Height="30" Click="Btn_ClickSonicGetDistance">Get</Button>
+                <Button Margin="5" Width="50" Height="50" Click="Btn_ClickSonicLeft" >
+                    <StackPanel>
+                        <Image Source="Images\back48.png"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="5" Width="50" Height="50" Click="Btn_ClickSonicCenter" >
+                    <StackPanel>
+                        <Image Source="Images\up.png"/>
+                    </StackPanel>
+                </Button>
+                <Button  Margin="5"  Width="50" Height="50" Click="Btn_ClickSonicRight" >
+                    <StackPanel>
+                        <Image Source="Images\forward.png"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" >
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center">Trace Messages :</Label>
+                <Button Margin="5" Click="BtnClear_Click"> Clear </Button>
+            </StackPanel>
+
+            <Border Margin="5" BorderBrush="Black" BorderThickness="1"   >
+                <WebBrowser   x:Name="webbrowser" Height="200"   HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            </Border>
+
+        </StackPanel>
+        <StackPanel  Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+            <Button  Width="60" Height="40" Margin="5" Click="btn_ClickLightsOn">Lights  On</Button>
+            <Button Width="60" Height="40" Margin="5" Click="btn_ClickLightsOff">Lights  Off</Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="0">
+            <Button Margin="5" Width="50" Height="50" Click="Btn_ClickForward" >
+                <StackPanel>
+                    <Image Source="Images\back48.png"/>
+                </StackPanel>
+            </Button>
+            <Button Margin="5"  Width="50" Height="50" Click="Btn_ClickLeft" >
+                <StackPanel>
+                    <Image Source="Images\left48.png"/>
+                </StackPanel>
+            </Button>
+            <Button Margin="5"  Width="50" Height="50" Click="Btn_ClickRight">
+                <StackPanel>
+                    <Image Source="Images\right48.png"/>
+                </StackPanel>
+            </Button>
+            <Button  Margin="5"  Width="50" Height="50" Click="Btn_ClickBack" >
+                <StackPanel>
+                    <Image Source="Images\forward.png"/>
+                </StackPanel>
+            </Button>
+            <Button  Margin="5"  Width="50" Height="50" Click="Btn_ClickAutoPilot" >
+                <StackPanel>
+                    <Image Source="Images\autopilot.png"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Slider Orientation="Vertical" Margin="5" Width="10" Grid.Row="0"  Grid.RowSpan="3" Grid.Column="3" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="1" Minimum="0" Maximum="100" Value="{Binding SpeedFactor}" />
+        <Button  Grid.Row="3" Grid.Column="3" Width="15" Height="15" Margin="5" Click="Btn_SpeedUpdateClick"></Button>
+    </Grid>
+</Window>
